@@ -1,0 +1,18 @@
+.container{
+    position: relative
+}
+
+.fa-trash{
+    position: absolute;
+    left:95%
+}
+
+.fa-trash:hover{
+    color:grey;
+
+}
+
+p i{
+vertical-align: top;
+}
+

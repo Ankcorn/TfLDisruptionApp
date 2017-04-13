@@ -21,7 +21,7 @@ export class TflService {
      var hour = today.getHours();
      var minutes = today.getMinutes();
 
-     var params = '?date='+year+'040'+day+'&time='+hour+minutes+'&timeIs=Departing';
+     var params = '?date='+year+'04'+day+'&time='+hour+minutes+'&timeIs=Departing';
      console.log(params);
      return params;
   }
