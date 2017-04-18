@@ -1,2 +1,20 @@
-<input (keyup)="fromInput($event)"><small> to </small><input (keyup)="toInput($event)"><button (click)="search()">
-
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <input id="fromLocation" type="text" class="validate" (keyup)="fromInput($event)">
+                <label for="fromLocation">From</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="toLocation" type="text" class="validate" (keyup)="toInput($event)">
+                <label for="toLocation">To</label>
+            </div>
+        </div>
+        <div class="row">
+            <div id="inputContainer" class="input-field col s12">
+                
+                <button class="btn waves-effect waves-light" (click)="search()">Search</button>
+            </div>
+        </div>
+    </form>
+</div>

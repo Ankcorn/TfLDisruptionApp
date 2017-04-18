@@ -39,11 +39,12 @@ export class TflService {
      }
 
      if(minutes.toString().length===1){
-       console.log('converting')
-       minutes = parseInt('0'+minutes)
+       var minuteString = '0'+minutes
+     }else{
+       var minuteString = ''+ minutes
      }
 
-     var params = '?date='+year+monthString+day+'&time='+hourString+minutes+'&timeIs=Departing';
+     var params = '?date='+year+monthString+day+'&time='+hourString+minuteString+'&timeIs=Departing';
 
      console.log(params);
      return params;

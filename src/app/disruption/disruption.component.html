@@ -1,6 +1,14 @@
 
-<div class="container-fluid">
-<i class="fa {{categoryIcon}} col-md-1 fa-3x" aria-hidden="true"></i>
-<p class="col-md-10 ">{{description}}</p>
-<i class="fa fa-trash col-md-1 fa-3x" aria-hidden="true" (click)="delete(i)"></i>
+<div id="container">
+    <div>
+<i class=" fa {{categoryIcon}} fa-3x" aria-hidden="true"></i>
+    </div>
+    <div>
+<p>{{description}}</p>
+
+
+    </div>
 </div>
+<a href="#">
+<i class="fa fa-trash secondary-content fa-3x " aria-hidden="true" (click)="delete(i)"></i>
+</a>
