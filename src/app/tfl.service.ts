@@ -5,42 +5,57 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { Subject } from 'rxjs/Subject';
+
 @Injectable()
 export class TflService {
-  Base_URL = 'https://api.tfl.gov.uk/Journey/JourneyResults/'
-  FROM_TO = '51.501377%2C%20-0.126221/to/51.513513%2C%20-0.089153'
+  Base_URL:string = 'https://api.tfl.gov.uk/Journey/JourneyResults/'
+  FROM_TO:string = '51.501377%2C%20-0.126221/to/51.513513%2C%20-0.089153'
 
   constructor(private http: Http) { }
 
+  //Trigger that lets the disruption-list 
+  private requestSource = new Subject<boolean>(); // For the initial search screen
+  requestComplete$ = this.requestSource.asObservable();
 
   getParams():string{
      var today = new Date();
      var year = today.getFullYear();
      var month = today.getMonth()+1;
-     var day = '0'+today.getDate();
+     var day = today.getDate();
      var hour = today.getHours();
      var minutes = today.getMinutes();
+     
 
-
-     if(hour.toString.length===1){
-       hour = 0+hour 
+     if(month.toString().length===1){
+       var monthString = '0'+month
+     }else{
+       var monthString = ''+month
+     }
+     if(hour.toString().length===1){
+       var hourString = '0'+hour
+     }else{
+       var hourString = ''+hour
      }
 
-     if(minutes.toString.length===1){
+     if(minutes.toString().length===1){
        console.log('converting')
-       minutes = 0+minutes
+       minutes = parseInt('0'+minutes)
      }
 
-     var params = '?date='+year+'0'+month+day+'&time='+hour+minutes+'&timeIs=Departing';
+     var params = '?date='+year+monthString+day+'&time='+hourString+minutes+'&timeIs=Departing';
 
      console.log(params);
      return params;
   }
 
-  getData(): Observable<Object>{
-     return this.http.get(this.Base_URL+this.FROM_TO+this.getParams())
+  getData(from:string,to:string){
+      this.http.get(this.Base_URL+from+'/to/'+to+this.getParams())
                      .map(this.extractData)
                      .catch(this.handleError)
+                     .subscribe((data) => {
+                        this.requestSource.next(data)
+                     })
     
   }
 

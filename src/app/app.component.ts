@@ -7,8 +7,6 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'Disruptions';
-  startPoint = 'Westminster';
-  endPoint = 'Bank';
+  title = 'Disruptions'
 
 }

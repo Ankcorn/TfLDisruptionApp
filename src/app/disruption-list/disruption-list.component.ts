@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import { trigger, state, style, animate, transition} from '@angular/core';
 
 import { TflService } from '../tfl.service'
@@ -21,26 +22,20 @@ import { TflService } from '../tfl.service'
 })
 export class DisruptionListComponent implements OnInit {
 
-  constructor(@Inject(TflService) private tfl) { }
+  constructor(@Inject(TflService) private tfl) { 
+    this.tfl.requestComplete$.subscribe((tflRouteData) => {
+      console.log('Data request was made')
+      this.disruptionList = this.parseData(TflService)
+    })
+  }
  
   disruptionList = [];
  
   errorMessage
 
   ngOnInit() {
-    this.getDistruptions();
-    
   }
-
-  getDistruptions(){
-    this.tfl.getData().subscribe(
-      (result) => {
-        console.log('result received')
-        this.parseData(result)
-      },
-      error => this.errorMessage = <any>error);
-  }
-
+  
   parseData(data){
     var array =[]
 
@@ -51,9 +46,8 @@ export class DisruptionListComponent implements OnInit {
            array.push(obj)//}
          })
       })})
-      console.log(array)
 
-      this.disruptionList = array
+     return array
   }
 
   deleted(index:number){

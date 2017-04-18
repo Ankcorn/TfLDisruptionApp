@@ -6,23 +6,24 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { DisruptionListComponent } from './disruption-list/disruption-list.component';
 import { DisruptionComponent } from './disruption/disruption.component';
-import { UpdateComponent } from './update/update.component';
 
 import { TflService } from './tfl.service'
+import { GoogleService } from './google.service';
+import { LocationComponent } from './location/location.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     DisruptionListComponent,
     DisruptionComponent,
-    UpdateComponent
+    LocationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [TflService],
+  providers: [TflService,GoogleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
