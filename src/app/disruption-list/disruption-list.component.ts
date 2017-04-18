@@ -20,12 +20,13 @@ import { TflService } from '../tfl.service'
     ])
   ]
 })
+
 export class DisruptionListComponent implements OnInit {
 
   constructor(@Inject(TflService) private tfl) { 
     this.tfl.requestComplete$.subscribe((tflRouteData) => {
       console.log('Data request was made')
-      this.disruptionList = this.parseData(TflService)
+      this.disruptionList = this.parseData(tflRouteData)
     })
   }
  
@@ -37,8 +38,8 @@ export class DisruptionListComponent implements OnInit {
   }
   
   parseData(data){
-    var array =[]
-
+    var array = []
+   
     data.journeys.map(function(obj){
       obj.legs.map(function(obj){
          obj.disruptions.map(function(obj){

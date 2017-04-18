@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Http, Response }          from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -14,15 +14,17 @@ export class GoogleService {
 
   constructor(private http:Http) { }
 
-  getLatLong(place:string):Observable<string>{
-    return this.http.get(this.BASEURL+place+this.Key)
-            .map(this.extractData)
-            .catch(this.handleError)
-    
+  getLatLong(place0:string,place1:string):Observable<string[]>{
+   return Observable.forkJoin(
+      this.http.get(this.BASEURL+place1+this.Key).map(this.extractData).catch(this.handleError),
+      this.http.get(this.BASEURL+place0+this.Key).map(this.extractData).catch(this.handleError)
+    )
   }
+
   private extractData(res: Response) {
     let body = res.json();
-    let location = body.results[0].geometry.location.lat+'%2C%'+body.results[0].geometry.location.lng
+    let location = body.results[0].geometry.location.lat+'%2C%20'+body.results[0].geometry.location.lng
+    console.log(location)
     return location
   }
 

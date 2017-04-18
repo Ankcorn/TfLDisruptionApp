@@ -15,8 +15,8 @@ export class LocationComponent implements OnInit {
   to:string
 
   ngOnInit(){
-    
   }
+
   fromInput($event:any){
       this.from = $event.target.value
   }
@@ -24,16 +24,16 @@ export class LocationComponent implements OnInit {
       this.to = $event.target.value
   }
   search(){
-    this.tfl.getData(this.geoLocation(this.from),this.geoLocation(this.to))
+    this.geoLocation(this.to,this.from,(tolocation,fromlocation)=>{
+        this.tfl.getData(fromlocation,tolocation)
+    })
   }
 
-  geoLocation(place:string){
+  geoLocation(to:string,from:string,callback){
 
-    var result = this.geo.getLatLong(place).subscribe((result) =>{
-      
-      console.log(result)
+    this.geo.getLatLong(to,from).subscribe((result) =>{
+      callback(result[0],result[1])
     })
-    
-    return result
+
   }
 }
