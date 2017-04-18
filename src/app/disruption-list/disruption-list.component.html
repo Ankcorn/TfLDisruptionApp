@@ -1,6 +1,14 @@
 <div class="container">
 <ul class="list-group items">
-  <li class="list-group-item" *ngFor="let disruption of disruptionList">
-    <app-disruption [disruption]="disruption"></app-disruption>
+
+  <li class="list-group-item" 
+        *ngFor="let disruption of disruptionList; let i=index"
+        [@DisruptionElement]>
+    
+    <app-disruption
+    [disruption]="disruption"
+    [i]="i"
+    (deleted)="deleted($event)"
+    ></app-disruption>
 </ul>
 </div>

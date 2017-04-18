@@ -21,8 +21,9 @@ export class TflService {
      var hour = today.getHours();
      var minutes = today.getMinutes();
 
+
      if(hour.toString.length===1){
-       hour = 0+hour
+       hour = 0+hour 
      }
 
      if(minutes.toString.length===1){
@@ -31,6 +32,7 @@ export class TflService {
      }
 
      var params = '?date='+year+'0'+month+day+'&time='+hour+minutes+'&timeIs=Departing';
+
      console.log(params);
      return params;
   }
