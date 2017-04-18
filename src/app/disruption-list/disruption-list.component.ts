@@ -28,13 +28,13 @@ export class DisruptionListComponent implements OnInit {
 
   parseData(data){
     var array =[]
-    data.journeys.map(function(obj){
-      obj.legs.map(function(obj){
-         obj.disruptions.map(function(obj){
-           if(obj.category!=='Information'){
-           array.push(obj)}
-         })
-      })})
+    data.journeys.map(obj=>{
+      obj.legs.map(obj=>{
+         obj.disruptions.map(obj=>{
+           if(obj.category!=='Information') array.push(obj)
+          })
+      })
+    })
       console.log(array)
 
       this.disruptionList = array

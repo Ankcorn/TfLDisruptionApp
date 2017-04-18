@@ -16,12 +16,21 @@ export class TflService {
   getParams():string{
      var today = new Date();
      var year = today.getFullYear();
-     var month = today.getMonth();
-     var day = today.getDate();
+     var month = today.getMonth()+1;
+     var day = '0'+today.getDate();
      var hour = today.getHours();
      var minutes = today.getMinutes();
 
-     var params = '?date='+year+'040'+day+'&time='+hour+minutes+'&timeIs=Departing';
+     if(hour.toString.length===1){
+       hour = 0+hour
+     }
+
+     if(minutes.toString.length===1){
+       console.log('converting')
+       minutes = 0+minutes
+     }
+
+     var params = '?date='+year+'0'+month+day+'&time='+hour+minutes+'&timeIs=Departing';
      console.log(params);
      return params;
   }

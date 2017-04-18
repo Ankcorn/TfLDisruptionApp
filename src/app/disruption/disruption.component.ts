@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-disruption',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./disruption.component.css']
 })
 export class DisruptionComponent implements OnInit {
-
+  @Input() disruption;
+  
   constructor() { }
 
   ngOnInit() {
