@@ -1,14 +1,6 @@
 <div>
-<ul class="collection" >
-
-  <li class="collection-item" 
-        *ngFor="let disruption of disruptionList; let i=index"
-        [@DisruptionElement]>
-    
-    <app-disruption
-    [disruption]="disruption"
-    [i]="i"
-    (deleted)="deleted($event)"
-    ></app-disruption>
-</ul>
+    <ul class="collection">
+        <li class="collection-item" *ngFor="let disruption of disruptionList; let i=index" [@DisruptionElement]>
+            <app-disruption [disruption]="disruption" [i]="i" (deleted)="deleted($event)"></app-disruption>
+    </ul>
 </div>

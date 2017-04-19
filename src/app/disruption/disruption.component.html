@@ -1,10 +1,14 @@
-<div id="container" class="col s12">
-    <div>
-        <i class=" fa {{categoryIcon}} fa-3x" aria-hidden="true"></i>
+<div id="container" class="row">
+        <div id="left-div">
+            <i class="col fa {{categoryIcon}} fa-3x" aria-hidden="true"></i>
+        </div>
+        <div id="right-div">
+            <a href="#" id="deleteButton" class="col">
+                <i class="fa fa-trash secondary-content fa-3x " aria-hidden="true" (click)="delete(i)"></i>
+            </a>
+        </div>
+        <div id="middle-div">
+            <p class="col">{{description}}</p>
 
-        <p>{{description}}</p>
-    </div>
+        </div>
 </div>
-<a href="#">
-    <i class="fa fa-trash secondary-content fa-3x " aria-hidden="true" (click)="delete(i)"></i>
-</a>

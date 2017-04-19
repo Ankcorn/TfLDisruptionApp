@@ -1,3 +1,31 @@
-#container > div{
-    float:left;
+#left-div { 
+    width: 71px; 
+    float: left;  
+}
+
+#middle-div { 
+    margin-left: 71px; 
+    margin-right: 36px;  
+}
+
+#right-div { 
+    width: 36px; 
+    float: right;  
+}
+
+#deleteButton{
+    float:right;
+}
+
+.col{
+    width: 100%;
+}
+
+li{
+    padding-left:0;
+    padding-right:0;
+}
+
+.row{
+    margin-bottom: 0;
 }

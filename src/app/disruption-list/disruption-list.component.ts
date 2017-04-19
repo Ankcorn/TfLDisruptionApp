@@ -27,6 +27,9 @@ export class DisruptionListComponent implements OnInit {
     this.tfl.requestComplete$.subscribe((tflRouteData) => {
       console.log('Data request was made')
       this.disruptionList = this.parseData(tflRouteData)
+      
+
+
     })
   }
  
