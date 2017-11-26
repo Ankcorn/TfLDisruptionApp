@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 export class GoogleService {
 
   BASEURL = 'https://maps.googleapis.com/maps/api/geocode/json?address='
-  Key = '&key=AIzaSyDAXOkRTBYTZWK_lM1BUclDbGn1BqFUj7c'
+  Key = 'secret_key'
 
   constructor(private http:Http) { }
 
